@@ -12,11 +12,15 @@
         },
         mounted(){
             this.$store.dispatch('getMovies')
+            this.$store.dispatch('getActors')
         },
         computed: {
             getMovies() {
                 return this.$store.state.movies.results
-            }
+            },
+            getActors() {
+                return this.$store.state.actors.results
+            },
         }
 
     }

@@ -10,16 +10,26 @@ export default new Vuex.Store({
   getters: {
   },
   mutations: {
-    SET_MOVIES: (state,movies)=>{
+    SET_MOVIES: (state,movies) => {
       state.movies = movies
       console.log(state.movies)
+    },
+    SET_ACTORS: (state, actors) => {
+      state.actors = actors
+      console.log('actors', state.actors)
     }
   },
   actions: {
-    getMovies: ({ commit })=>{
+    getMovies: ({ commit }) => {
       axios.get('http://localhost:8000/api/movies/')
       .then((response)=>{
         commit('SET_MOVIES', response.data)
+      })
+    },
+    getActors: ({ commit }) => {
+      axios.get('http://localhost:8000/api/actors/')
+      .then((response)=>{
+        commit('SET_ACTORS', response.data)
       })
     }
   },
