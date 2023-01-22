@@ -6,8 +6,18 @@
       <router-link to="/movies">Movies</router-link>
     </nav>
     <router-view/>
+    <MoviesData/>
   </div>
 </template>
+
+<script>
+import MoviesData from './data/MoviesData'
+
+export default {
+  components: { MoviesData }
+}
+
+</script>
 
 <style>
 #app {
