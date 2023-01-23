@@ -1,51 +1,46 @@
 <template>
-  <div class="card" @click="toggleVisibility">
+  <div class="card" @click.stop="toggleVisibility">
     <div class="title">{{ movie.title }}</div>
-    <div class="movie-details" v-if="visible">
-      <div class="description">{{ movie.description }}</div>
-      <div
-        class="actors"
-        v-for="(actor, index) in getFeaturedActors"
-        :key="index"
-      >{{ actor.first_name }} - {{ actor.last_name }}</div>
-    </div>
+
+    <MovieDetails v-if="visible" :movie="movie" />
+    <EditMovie v-if="enabledEdition" :movie="movie" />
+    <button @click.stop="toggleEdition" >Edit</button>
   </div>
 </template>
 <script>
+import EditMovie from "@/components/EditMovie";
+import MovieDetails from "@/components/MovieDetails";
+
 export default {
   name: "MovieCard",
   props: {
     movie: Object
   },
-  data(){
-      return {
-          visible: false
-      }
+  components: { EditMovie, MovieDetails },
+  data() {
+    return {
+      visible: false,
+      enabledEdition: false
+    };
   },
   methods: {
-      toggleVisibility: function() {
-          this.visible = !this.visible
-      }
-  },
-  computed: {
-    getActors() {
-      return this.$store.state.actors.results;
+    toggleVisibility: function() {
+      this.visible = !this.visible;
     },
-    getFeaturedActors() {
-      let featuredActors = [];
-      this.getActors.forEach(actor => {
-        if (this.movie.actors.includes(actor.id)) {
-          featuredActors.push(actor);
-        }
-      });
-      return featuredActors;
+    toggleEdition: function() {
+        console.log('click')
+      this.enabledEdition = !this.enabledEdition;
     }
   },
+
   mounted() {}
 };
 </script>
 <style scoped>
 .card {
   border: solid 1px;
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 </style>
