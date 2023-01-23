@@ -28,7 +28,6 @@ export default {
       this.visible = !this.visible;
     },
     toggleEdition: function() {
-        console.log('click')
       this.enabledEdition = !this.enabledEdition;
     }
   },

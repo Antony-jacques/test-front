@@ -16,7 +16,9 @@ export default new Vuex.Store({
     },
     SET_ACTORS: (state, actors) => {
       state.actors = actors
-      console.log('actors', state.actors)
+    },
+    SET_MOVIES_PAGE: (state, moviesPage) => {
+      state.moviesPage = moviesPage
     }
   },
   actions: {
@@ -31,6 +33,9 @@ export default new Vuex.Store({
       .then((response)=>{
         commit('SET_ACTORS', response.data)
       })
+    },
+    setMoviesPage: ({ commit }, { moviesPage }) => {
+      commit('SET_MOVIES_PAGE', moviesPage)
     }
   },
   modules: {
