@@ -1,6 +1,5 @@
 <template>
   <div>
-    MovieDetails
     <div class="movie-details">
       <div class="description">{{ movie.description }}</div>
       <div

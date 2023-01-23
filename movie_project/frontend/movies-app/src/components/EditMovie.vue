@@ -27,14 +27,19 @@ export default {
     movie: Object
   }, 
   methods: {
-      editMovie: function(){
+      editMovie: async function(){
           const newMovie = {
               id: this.movie.id,
               title: this.movie.title,
               description: this.newDescription,
               actors: this.movie.actors
           }
-          axios.put(`http://localhost:8000/api/movies/${this.movie.id}/`, newMovie)
+          try {
+              const response = await axios.put(`http://localhost:8000/api/movies/${this.movie.id}/`, newMovie);
+              console.log(response);
+          } catch (error) {
+              console.log(error)
+          }
       }
   },
     computed: {
